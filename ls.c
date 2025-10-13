@@ -38,8 +38,7 @@ int main(int argc, char *argv[]) {
     }
     // task 1 과제 구현하기 시작체
     while ((entry = readdir(dp)) != NULL) {  // 파일 목록을 하나씩 읽기
-        if (!opt_a && entry->d_name[0] == '.') continue; // 숨김파일 제외(-a옵션,
-ㅑ							 // 파일 이름의 첫글자 .)
+        if (!opt_a && entry->d_name[0] == '.') continue; // 숨김파일 제외(-a옵션							 // 파일 이름의 첫글자 .)
 
         if (stat(entry->d_name, &statbuf) == -1) continue; // stat() 함수를이용해 파일의 
 	//innode 정보를 가져와 statbuf에 저장 (파일 종류, incode 번호, 크기, 소유자 id, 수정 시간 등의 정보) , 만약 읽기 실패하면 -1 반환 후 , 스킵하기.
