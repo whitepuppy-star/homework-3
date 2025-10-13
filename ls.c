@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <sys/types.h>
-#include <sys/stat.h>
+#include <sys/stat.h> // 매크로 함수 
 #include <dirent.h>  // 파일 정보 구조
 #include <unistd.h>
 #include <string.h>
@@ -21,7 +21,7 @@ void print_permissions(mode_t mode) {
 
 int main(int argc, char *argv[]) {
     DIR *dp;
-    struct dirent *entry; // 디렉토리 항목 구조체 포인
+    struct dirent *entry; // 디렉토리 항목 구조체 포인터
     struct stat statbuf;
     int opt_a = 0, opt_d = 0;
 
