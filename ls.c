@@ -40,9 +40,7 @@ int main(int argc, char *argv[]) {
     while ((entry = readdir(dp)) != NULL) {  // 파일 목록을 하나씩 읽기
         if (!opt_a && entry->d_name[0] == '.') continue; // 숨김파일 제외(-a옵션							 // 파일 이름의 첫글자 .)
 
-        if (stat(entry->d_name, &statbuf) == -1) continue; // stat() 함수를이용해 파일의 
-	//innode 정보를 가져와 statbuf에 저장 (파일 종류, incode 번호, 크기, 소유자 id, 수정 시간 등의 정보) , 만약 읽기 실패하면 -1 반환 후 , 스킵하기.
-
+        if (lstat(entry->d_name, &statbuf) == -1) continue; // lstat() 함수를 이용해 링크 자체의 정보를 가져온다. (소프트 링크의 inode나 타입도 구별 가능함)
         if (opt_d) { // opt_d가 1때. 즉, 디렉토리인 항목만 출력
             if (S_ISDIR(statbuf.st_mode))  // 파일 종류 + 접근 권한을 16진수 비트값으로 넣어 이게 디렉토리인지, 일반파일인지, 권한이 뭔지에 대한 정보를 담음.
                 printf("Directory: %s\n", entry->d_name);
